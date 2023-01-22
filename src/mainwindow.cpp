@@ -6,6 +6,7 @@
 #include <QVector2D>
 #include <QFileDialog>
 #include <QMessageBox>
+#include <QtMath>
 
 
 using namespace std;
