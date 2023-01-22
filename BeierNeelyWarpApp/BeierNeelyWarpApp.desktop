@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=BeierNeelyWarpApp
+Comment=Draw lines to warp image
+Exec=BeierNeelyWarpApp
+Icon=F
+Categories=Office;
+X-AppImage-Version=
