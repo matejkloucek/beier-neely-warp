@@ -30,6 +30,7 @@ public:
     QDoubleSpinBox *pSpinBox;
     QPushButton *hintButton;
     QPushButton *loadButton;
+    QPushButton *editButton;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -50,10 +51,14 @@ public:
         warpButton->setGeometry(QRect(370, 540, 251, 71));
         warningLabel = new QLabel(centralwidget);
         warningLabel->setObjectName("warningLabel");
-        warningLabel->setGeometry(QRect(380, 480, 231, 31));
+        warningLabel->setGeometry(QRect(380, 465, 231, 31));
         clearButton = new QPushButton(centralwidget);
         clearButton->setObjectName("clearButton");
-        clearButton->setGeometry(QRect(450, 630, 89, 25));
+        clearButton->setGeometry(QRect(500, 630, 89, 25));
+        editButton = new QPushButton(centralwidget);
+        editButton->setObjectName("editButton");
+        editButton->setGeometry(QRect(400, 630, 89, 25));
+        editButton->setText("Edit");
         parametersLabel = new QLabel(centralwidget);
         parametersLabel->setObjectName("parametersLabel");
         parametersLabel->setGeometry(QRect(100, 40, 121, 21));

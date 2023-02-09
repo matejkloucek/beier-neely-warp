@@ -19,6 +19,7 @@ public:
 private slots:
     void on_warpButton_clicked();
     void on_clearButton_clicked();
+    void on_editButton_clicked();
 
     void on_aSpinBox_valueChanged(double arg1);
 
@@ -35,6 +36,7 @@ private:
     ClickableGraphicsScene sourceScene;
     ClickableGraphicsScene targetScene;
     void removeAllLines(ClickableGraphicsScene * scene);
+    void removeSelectedLines(ClickableGraphicsScene * searchedScene, ClickableGraphicsScene * otherScene);
     void warp();
     QRgb assignPixel(float x, float y);
     float shortestDist(QVector2D x, QLineF qp ,float u, float v);

@@ -45,6 +45,9 @@ void MainWindow::on_warpButton_clicked()
     }
     else{
         ui->warningLabel->setText("");
+        sourceScene.setEditMode(false);
+        targetScene.setEditMode(false);
+        ui->clearButton->setText("Reset");
         // start warping
         this->warp();
     }
@@ -53,12 +56,39 @@ void MainWindow::on_warpButton_clicked()
 
 void MainWindow::on_clearButton_clicked()
 {
-    // removing lines, setting default image
-    this->removeAllLines(&sourceScene);
-    this->removeAllLines(&targetScene);
-    QImage sourceImage = sourceScene.getImage();
-    targetScene.setImage(sourceImage);
-    ui->warningLabel->setText("");
+    if(sourceScene.getEditMode()){
+        // TODO: make this work properly
+       // remove selected lines
+        this->removeSelectedLines(&sourceScene, &targetScene);
+        this->removeSelectedLines(&targetScene, &sourceScene);
+    }
+    else{
+        // removing lines, setting default image
+        this->removeAllLines(&sourceScene);
+        this->removeAllLines(&targetScene);
+        QImage sourceImage = sourceScene.getImage();
+        targetScene.setImage(sourceImage);
+        sourceScene.setImage(sourceImage);
+        ui->warningLabel->setText("");
+    }
+}
+
+void MainWindow::on_editButton_clicked()
+{
+    if(sourceScene.getEditMode()){
+        ui->warningLabel->setText("");
+        ui->warningLabel->setGeometry(QRect(380, 465, 231, 31));
+        ui->clearButton->setText("Reset");
+    }
+    else{
+        ui->warningLabel->setText("YOU ARE NOW IN EDIT MODE (Select lines by double-clicking on them and then delete them by pressing the 'Delete' button)");
+        ui->warningLabel->setGeometry(QRect(100, 465, 231, 31));
+        ui->warningLabel->adjustSize();
+        ui->clearButton->setText("Delete");
+    }
+    sourceScene.switchEditMode();
+    targetScene.switchEditMode();
+
 }
 
 void MainWindow::removeAllLines(ClickableGraphicsScene * scene)
@@ -69,6 +99,16 @@ void MainWindow::removeAllLines(ClickableGraphicsScene * scene)
     }
     scene->clearLines();
     scene->clearCoordinates();
+}
+
+void MainWindow::removeSelectedLines(ClickableGraphicsScene *searchedScene, ClickableGraphicsScene * otherScene)
+{
+    QList<QGraphicsItem *> selectedLines = searchedScene->selectedItems();
+    for(int i = 0; i < selectedLines.size(); i++){
+        QColor color = searchedScene->getArrowColor(selectedLines[i]);
+        otherScene->removeArrow(color);
+        searchedScene->removeArrow(color);
+    }
 }
 
 void MainWindow::warp()
@@ -108,6 +148,7 @@ void MainWindow::warp()
     targetScene.setImage(targetImage);
     this->removeAllLines(&sourceScene);
     this->removeAllLines(&targetScene);
+    sourceScene.setImage(sourceScene.getImage());
 }
 
 QRgb MainWindow::assignPixel(float x, float y)
