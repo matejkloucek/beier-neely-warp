@@ -57,7 +57,6 @@ void MainWindow::on_warpButton_clicked()
 void MainWindow::on_clearButton_clicked()
 {
     if(sourceScene.getEditMode()){
-        // TODO: make this work properly
        // remove selected lines
         this->removeSelectedLines(&sourceScene, &targetScene);
         this->removeSelectedLines(&targetScene, &sourceScene);

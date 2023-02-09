@@ -17,4 +17,4 @@ The easiest way of running the app is simply downloading the **BeierNeelyWarpApp
 ```
 
 ### 2. Building the app locally:
-The app has been tested using both Qt6 and Qt4, either of these can be downloaded using this website: https://www.qt.io/download-qt-installer
+The app has been tested using both Qt6 and Qt5, either of these can be downloaded using this website: https://www.qt.io/download-qt-installer

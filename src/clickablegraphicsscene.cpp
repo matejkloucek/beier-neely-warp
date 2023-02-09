@@ -3,6 +3,7 @@
 #include <QGraphicsScene>
 #include <QGraphicsSceneMouseEvent>
 #include <iostream>
+#include <QtMath>
 
 using namespace std;
 
