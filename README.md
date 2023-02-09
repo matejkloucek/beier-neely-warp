@@ -10,14 +10,8 @@ https://github.com/probonopd/linuxdeployqt
 ## Running the app on Linux:
 For Linux users there are 2 ways of running the app without having to build it themselves:
 
-### 1. Using the AppImage:
-The easiest way of running the app is simply downloading the **BeierNeelyWarpApp-x86_64.AppImage** file, which can then be simply executed from terminal using
+### Using the AppImage:
+The easiest way of running the app is simply downloading the **BeierNeelyWarpApp-x86_64.AppImage** file from the **Releases** section of this repository, which can then be simply executed from terminal using
 ```
 ./BeierNeelyWarpApp-x86_64.AppImage
-```
-
-### 2. Executing the binary file:
-The second option is navigating to the **root/BeierNeelyWarpApp/** folder and executing
-```
-./BeierNeelyWarpApp
 ```
