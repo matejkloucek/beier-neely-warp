@@ -37,6 +37,7 @@ private:
     ClickableGraphicsScene targetScene;
     void removeAllLines(ClickableGraphicsScene * scene);
     void removeSelectedLines(ClickableGraphicsScene * searchedScene, ClickableGraphicsScene * otherScene);
+    void removeAllArrows(ClickableGraphicsScene * scene);
     void warp();
     QRgb assignPixel(float x, float y);
     float shortestDist(QVector2D x, QLineF qp ,float u, float v);

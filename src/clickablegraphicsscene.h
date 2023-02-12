@@ -21,12 +21,14 @@ public:
     explicit ClickableGraphicsScene(QObject *parent = nullptr);
     QList<QPointF> getCoordinates();
     QList<QGraphicsLineItem *> getaAllLines();
+    QList<Arrow *> getAllArrows();
     void addPoint();
     int getNumberOfPoints();
     QImage getImage();
     void setImage(QImage sourceImage);
     void clearLines();
     void clearCoordinates();
+    void clearArrows();
     QImage loadImage(QString file);
     bool getEditMode();
     void switchEditMode();

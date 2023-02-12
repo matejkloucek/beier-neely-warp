@@ -37,14 +37,15 @@ void MainWindow::on_warpButton_clicked()
     // making sure that the number of lines is equal
     QList<QGraphicsLineItem*> targetLines = targetScene.getaAllLines();
     QList<QGraphicsLineItem*> sourceLines = sourceScene.getaAllLines();
-    if(sourceScene.getNumberOfPoints() == 0 || targetScene.getNumberOfPoints() == 0){
+    ui->warningLabel->setGeometry(QRect(380, 465, 231, 31));
+    if(sourceLines.size() == 0 || targetLines.size() == 0){
         ui->warningLabel->setText("Add lines to both images!");
     }
     else if(targetLines.size() != sourceLines.size()){
         ui->warningLabel->setText("Both images need to have the same amount of lines!");
     }
     else{
-        ui->warningLabel->setText("");
+        ui->warningLabel->setText("");     
         sourceScene.setEditMode(false);
         targetScene.setEditMode(false);
         ui->clearButton->setText("Reset");
@@ -63,8 +64,8 @@ void MainWindow::on_clearButton_clicked()
     }
     else{
         // removing lines, setting default image
-        this->removeAllLines(&sourceScene);
-        this->removeAllLines(&targetScene);
+        this->removeAllArrows(&sourceScene);
+        this->removeAllArrows(&targetScene);
         QImage sourceImage = sourceScene.getImage();
         targetScene.setImage(sourceImage);
         sourceScene.setImage(sourceImage);
@@ -110,6 +111,18 @@ void MainWindow::removeSelectedLines(ClickableGraphicsScene *searchedScene, Clic
     }
 }
 
+void MainWindow::removeAllArrows(ClickableGraphicsScene *scene)
+{
+    QList<Arrow *> arrows = scene->getAllArrows();
+    for(int i = 0; i < arrows.size(); i++){
+        scene->removeItem(arrows[i]->getArrowHead());
+        scene->removeItem(arrows[i]->getLine());
+    }
+    scene->clearLines();
+    scene->clearCoordinates();
+    scene->clearArrows();
+}
+
 void MainWindow::warp()
 {
     QImage targetImage = targetScene.getImage();
@@ -145,8 +158,8 @@ void MainWindow::warp()
         }
     }
     targetScene.setImage(targetImage);
-    this->removeAllLines(&sourceScene);
-    this->removeAllLines(&targetScene);
+    this->removeAllArrows(&sourceScene);
+    this->removeAllArrows(&targetScene);
     sourceScene.setImage(sourceScene.getImage());
 }
 

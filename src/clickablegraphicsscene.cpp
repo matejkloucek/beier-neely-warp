@@ -26,6 +26,11 @@ QList<QGraphicsLineItem *> ClickableGraphicsScene::getaAllLines()
     return lines;
 }
 
+QList<Arrow *> ClickableGraphicsScene::getAllArrows()
+{
+    return arrows;
+}
+
 void ClickableGraphicsScene::addPoint()
 {
     numberOfPoints++;
@@ -57,6 +62,11 @@ void ClickableGraphicsScene::clearCoordinates()
 {
     this->coordinates.clear();
     this->numberOfPoints = 0;
+}
+
+void ClickableGraphicsScene::clearArrows()
+{
+    this->arrows.clear();
 }
 
 QImage ClickableGraphicsScene::loadImage(QString file)
